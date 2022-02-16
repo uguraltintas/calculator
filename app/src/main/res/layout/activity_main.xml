@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.uguraltintas.calculator.ui.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MainActivity"
+        android:background="@color/gray"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="74dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlus5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
+            android:backgroundTint="@color/pale_gray"
+            android:textColor="@color/white"
+            android:layout_margin="8dp"
+            android:onClick="@{()->viewModel.onAllClearClick()}"
+            android:text="@string/all_clear"
+            app:layout_constraintBottom_toTopOf="@+id/btnSeven"
+            app:layout_constraintEnd_toEndOf="@+id/btnSeven"
+            app:layout_constraintStart_toStartOf="@+id/btnSeven" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlus4"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onMultiplyClick()}"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
+            android:text="@string/multiply"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlus3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnNine" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlus3"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onMinusClick()}"
+            android:text="@string/minus"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:backgroundTint="@color/orange"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlus2"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnSix" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlus2"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
+            android:onClick="@{()->viewModel.onPlusClick()}"
+            android:text="@string/plus"
+            app:layout_constraintBottom_toTopOf="@+id/btnZero"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnThree" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:id="@+id/svResultSup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/svResult"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/tvResultSup"
+                setVisibility="@{viewModel.number1Visibility}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end|bottom"
+                android:textColor="@color/text_gray"
+                android:layout_gravity="bottom"
+                android:text="@{viewModel.number1}"
+                android:textSize="24sp"
+                android:padding="8dp"
+                tools:text="956" />
+        </ScrollView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/svResult"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlus5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/svResultSup">
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:text="@{viewModel.number}"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="956" />
+        </ScrollView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlus"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/white"
+            android:onClick="@{()->viewModel.onDivideClick()}"
+            android:text="@string/divide"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlus4"
+            app:layout_constraintEnd_toEndOf="@+id/btnPlus4"
+            app:layout_constraintStart_toStartOf="@+id/btnPlus4" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEqual"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/green"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{()->viewModel.onEqualsClick()}"
+            android:text="@string/equal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btnPlus2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTwo"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/pale_gray"
+            android:onClick="@{()-> viewModel.onNumberClick(2)}"
+            android:text="@string/two"
+            app:layout_constraintBottom_toTopOf="@+id/btnZero"
+            app:layout_constraintEnd_toStartOf="@+id/btnThree"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnOne" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnZero"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pale_gray"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{()-> viewModel.onNumberClick(0)}"
+            android:text="@string/zero"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnThree"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnThree"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/pale_gray"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.onNumberClick(3)}"
+            android:text="@string/three"
+            app:layout_constraintBottom_toTopOf="@+id/btnZero"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlus2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnTwo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOne"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/pale_gray"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:onClick="@{()-> viewModel.onNumberClick(1)}"
+            android:text="@string/one"
+            app:layout_constraintBottom_toTopOf="@+id/btnZero"
+            app:layout_constraintEnd_toStartOf="@+id/btnTwo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFour"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pale_gray"
+            android:layout_margin="8dp"
+            android:onClick="@{()-> viewModel.onNumberClick(4)}"
+            android:text="@string/four"
+            app:layout_constraintBottom_toTopOf="@+id/btnOne"
+            app:layout_constraintEnd_toStartOf="@+id/btnFive"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFive"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pale_gray"
+            android:onClick="@{()-> viewModel.onNumberClick(5)}"
+            android:text="@string/five"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnTwo"
+            app:layout_constraintEnd_toStartOf="@+id/btnSix"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnFour" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSix"
+            style="?attr/materialButtonOutlinedStyle"
+            android:backgroundTint="@color/pale_gray"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.onNumberClick(6)}"
+            android:text="@string/six"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnThree"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlus3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnFive" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEight"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/pale_gray"
+            android:onClick="@{()-> viewModel.onNumberClick(8)}"
+            android:text="@string/eight"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnFive"
+            app:layout_constraintEnd_toStartOf="@+id/btnNine"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnSeven" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSeven"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/pale_gray"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.onNumberClick(7)}"
+            android:text="@string/seven"
+            app:layout_constraintBottom_toTopOf="@+id/btnFour"
+            app:layout_constraintEnd_toStartOf="@+id/btnEight"
+            android:layout_margin="8dp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNine"
+            style="?attr/materialButtonOutlinedStyle"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/pale_gray"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:onClick="@{()-> viewModel.onNumberClick(9)}"
+            android:text="@string/nine"
+            app:layout_constraintBottom_toTopOf="@+id/btnSix"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlus4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnEight" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
